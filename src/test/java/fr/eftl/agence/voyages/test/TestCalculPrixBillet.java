@@ -23,5 +23,37 @@ public class TestCalculPrixBillet {
 	}
 	
 	
-
+	@Test
+	public void prixBilletclasseBusiness () {
+		CalculPrixBillet prixBillet = new CalculPrixBillet();
+		//CalculPrixUnitaire calculprixUnitaire = new CalculPrixUnitaire();
+		CalculPrixUnitaire calculPrixUnitaire= Mockito.mock(CalculPrixUnitaire.class);
+		Mockito.when(calculPrixUnitaire.generer()).thenReturn(200);
+		prixBillet.setCalculPrixUnitaire(calculPrixUnitaire);
+		
+		Integer prixObtenu = prixBillet.calculer("Paris", "Londres", "business");
+		Assert.assertEquals(700, prixObtenu,0);
+}
+	@Test
+	public void prixBilletpremiere () {
+		CalculPrixBillet prixBillet = new CalculPrixBillet();
+		//CalculPrixUnitaire calculprixUnitaire = new CalculPrixUnitaire();
+		CalculPrixUnitaire calculPrixUnitaire= Mockito.mock(CalculPrixUnitaire.class);
+		Mockito.when(calculPrixUnitaire.generer()).thenReturn(200);
+		prixBillet.setCalculPrixUnitaire(calculPrixUnitaire);
+		
+		Integer prixObtenu = prixBillet.calculer("Paris", "Londres", "premiere");
+		Assert.assertEquals(400, prixObtenu,0);
+	}
+	@Test
+	public void prixBilletclassedefault () {
+		CalculPrixBillet prixBillet = new CalculPrixBillet();
+		//CalculPrixUnitaire calculprixUnitaire = new CalculPrixUnitaire();
+		CalculPrixUnitaire calculPrixUnitaire= Mockito.mock(CalculPrixUnitaire.class);
+		Mockito.when(calculPrixUnitaire.generer()).thenReturn(200);
+		prixBillet.setCalculPrixUnitaire(calculPrixUnitaire);
+		
+		Integer prixObtenu = prixBillet.calculer("Paris", "Londres", "");
+		Assert.assertEquals(200, prixObtenu,0);
+	}
 }
